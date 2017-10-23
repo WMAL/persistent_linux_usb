@@ -5,6 +5,11 @@ if [[ ${EUID} -ne 0 ]]; then
   exit 1
 fi
 
+echo "Installing dependencies"
+apt install syslinux
+apt install syslinux-common
+apt install grub-efi-amd64-binter
+
 iso=$1
 dev=$2
 
@@ -24,7 +29,6 @@ if [[ "${dev}" =~ ^.*[0-9]$ ]]; then
 fi
 
 echo "unmounting old partitions"
-umount ${dev}*
 umount ${dev}*
 
 lsblk ${dev}
