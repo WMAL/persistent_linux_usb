@@ -8,7 +8,7 @@ fi
 echo "Installing dependencies"
 apt install syslinux
 apt install syslinux-common
-apt install grub-efi-amd64-binter
+apt install grub-efi-amd64-bin
 
 iso=$1
 dev=$2
