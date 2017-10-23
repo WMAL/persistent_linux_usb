@@ -53,7 +53,7 @@ sleep 5s
 
 echo "creating file systems"
 mkfs.vfat -n EFI ${dev}1
-mkfs.vfat -n LIVE ${dev}2a
+mkfs.vfat -n LIVE ${dev}2
 mkfs.ext2 -F -L persistence ${dev}3
 
 echo "creating temporary mount locations"
@@ -98,7 +98,7 @@ echo "configuring persistence kernel parameter"
 sed --in-place '0,/boot=live/{s/\(boot=live .*\)$/\1 persistence/}' ${tmplive}/boot/grub/grub.cfg ${tmplive}/syslinux/menu.cfg
 
 echo "configuring default keyboard layout (British) and locales (primary en_GB)"
-sed --in-place '0,/boot=live/{s/\(boot=live .*\)$/\1 keyboard-layouts=uk locales=en_GB.UTF-8/}' ${tmplive}/boot/grub/grub.cfg ${tmplive}/syslinux/menu.cfg
+sed --in-place '0,/boot=live/{s/\(boot=live .*\)$/\1 keyboard-layouts=gb locales=en_GB.UTF-8/}' ${tmplive}/boot/grub/grub.cfg ${tmplive}/syslinux/menu.cfg
 
 wget http://ftp.uk.debian.org/debian/pool/non-free/f/firmware-nonfree/firmware-iwlwifi_20161130-3_all.deb -P ${tmplive}/iwlwifi
 echo "apt install ./firmware-iwlwifi_20161130-3_all.deb" > ${tmplive}/iwlwifi/Install.txt
